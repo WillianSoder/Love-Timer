@@ -9,7 +9,7 @@ body {
     font-family: 'Poppins', sans-serif;
     height: 100vh; /* altura total da tela */
     width: 100vw;
-    padding-top: 120px;
+    padding-top: 150px;
     display: flex;
     flex-direction: column; /* empilha verticalmente */
     justify-content: center; /* centraliza verticalmente */
