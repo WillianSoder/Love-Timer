@@ -53,7 +53,7 @@ const photos = [
     'foto7.jpg',
     'foto8.jpg',
     'foto9.jpg',
-    'foto10.jpg'
+    'foto10.JPG'
 ];
 
 let currentIndex = 0;
