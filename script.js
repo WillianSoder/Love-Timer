@@ -29,7 +29,8 @@ function verifyName() {
 
 function verifyBeauty() {
     const beauty = document.getElementById('beautyInput').value.trim().toLowerCase();
-    if (normalize(beauty) === normalize('infinito') || normalize(beauty) === normalize('Ininito') || normalize(beauty) === normalize('INFINITO')) {
+    if (normalize(beauty) === normalize('infinito') || normalize(beauty) === normalize('Ininito') || normalize(beauty) === normalize('INFINITO') ||
+        normalize(beauty) === normalize('infinita') || normalize(beauty) === normalize('Ininita') || normalize(beauty) === normalize('INFINITA')) {
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step3').style.display = 'block';
     } else {
@@ -59,7 +60,7 @@ function verifyChildren() {
     showMessage('Errrr... Não! 🤭 Pensa bem nos nomes dos nossos filhos e tente novamente.');
 }
 }
-
+/* Versão 1 da diferença de datas (pode gerar erros)
 const startDate = new Date(2025, 0, 1, 0, 0, 0); // 01/01/2025 às 00:00
 
 function updateTimer() {
@@ -100,6 +101,110 @@ function updateTimer() {
     document.getElementById('minutes').textContent = minutes;
     document.getElementById('seconds').textContent = seconds;
 
+}
+
+setInterval(updateTimer, 1000);
+*/
+
+
+/*v2 da diferença de datas*/
+const startDate = new Date(2025, 0, 1, 0, 0, 0); // 01/01/2025 às 00:00
+
+function updateTimer() {
+    const now = new Date();
+
+    // Diferença total em milissegundos
+    let diff = now - startDate;
+
+    // Calcula anos
+    let years = now.getFullYear() - startDate.getFullYear();
+
+    // Ajusta meses
+    let months = now.getMonth() - startDate.getMonth();
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    // Ajusta dias
+    let days = now.getDate() - startDate.getDate();
+    if (days < 0) {
+        months--;
+        if (months < 0) {
+            months += 12;
+            years--;
+        }
+        // Dias do mês anterior
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    // Ajusta horas
+    let hours = now.getHours() - startDate.getHours();
+    if (hours < 0) {
+        hours += 24;
+        days--;
+        if (days < 0) {
+            months--;
+            if (months < 0) {
+                months += 12;
+                years--;
+            }
+            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+            days += prevMonth.getDate();
+        }
+    }
+
+    // Ajusta minutos
+    let minutes = now.getMinutes() - startDate.getMinutes();
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+        if (hours < 0) {
+            hours += 24;
+            days--;
+            if (days < 0) {
+                months--;
+                if (months < 0) {
+                    months += 12;
+                    years--;
+                }
+                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += prevMonth.getDate();
+            }
+        }
+    }
+
+    // Ajusta segundos
+    let seconds = now.getSeconds() - startDate.getSeconds();
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+        if (minutes < 0) {
+            minutes += 60;
+            hours--;
+            if (hours < 0) {
+                hours += 24;
+                days--;
+                if (days < 0) {
+                    months--;
+                    if (months < 0) {
+                        months += 12;
+                        years--;
+                    }
+                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                    days += prevMonth.getDate();
+                }
+            }
+        }
+    }
+
+    document.getElementById('years').textContent = years;
+    document.getElementById('months').textContent = months;
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
 }
 
 setInterval(updateTimer, 1000);
