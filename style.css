@@ -353,14 +353,14 @@ html, body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.671);
-    border: 2px solid #d50000;
+    background-color: rgba(255, 255, 255, 0.671) !important;
+    border: 2px solid #d50000 !important;
     border-radius: 20px;
     padding: 15px 25px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     z-index: 99999;
     font-family: 'Dancing Script', cursive;
-    color: #d50000;
+    color: #d50000 !important;
     font-size: 1.2em;
     text-align: center;
     max-width: 80%;
