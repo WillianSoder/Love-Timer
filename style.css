@@ -16,6 +16,7 @@ body {
     align-items: center;     /* centraliza horizontalmente */
     text-align: center;
     background-attachment: fixed;
+    /*padding-top: 0;*/
 }
 
 body::before {
@@ -274,4 +275,111 @@ h2 {
             0 0 16px #ff1a1a,
             0 0 24px #ff1a1a;
     }
+}
+
+.auth-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 192, 203, 0.5); /* <- deixa meio transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    padding: 0;
+    /*backdrop-filter: blur(3px); /* opcional: desfoca o fundo */
+}
+
+.auth-step {
+    background: white;
+    border: 3px solid #d50000;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    width: 85%;
+    max-width: 320px; /* era 380px, agora menor */
+}
+
+.auth-step p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3em; /* levemente menor */
+    color: #d50000;
+    margin-bottom: 10px;
+}
+
+.auth-step input {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid #d50000;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.auth-step button {
+    padding: 10px 20px;
+    background-color: #d50000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+
+.auth-step button:hover {
+    background-color: #ff4d4d;
+}
+
+.hint {
+    color: #d50000;
+    font-style: italic;
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+/* Deixa o texto bem ajustado em telas menores */
+@media (max-width: 480px) {
+    .auth-step p {
+        font-size: 1.3em;
+    }
+
+    .auth-step input {
+        font-size: 1em;
+    }
+
+    .auth-step button {
+        font-size: 1em;
+    }
+}
+
+
+.message-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid #d50000;
+    border-radius: 20px;
+    padding: 15px 25px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    z-index: 99999;
+    font-family: 'Dancing Script', cursive;
+    color: #d50000;
+    font-size: 1.2em;
+    text-align: center;
+    max-width: 80%;
+    animation: fadeInOut 4s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px);}
+    10% { opacity: 1; transform: translateX(-50%) translateY(0);}
+    90% { opacity: 1; transform: translateX(-50%) translateY(0);}
+    100% { opacity: 0; transform: translateX(-50%) translateY(20px);}
 }

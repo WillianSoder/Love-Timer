@@ -1,3 +1,61 @@
+function showMessage(message) {
+    const box = document.getElementById('messageBox');
+    const content = document.getElementById('messageContent');
+
+    content.textContent = message;
+    box.style.display = 'block';
+
+    setTimeout(() => {
+        box.style.display = 'none';
+    }, 4000); // some depois de 4 segundos
+}
+
+// Verificações românticas 💖
+let beautyAttempts = 0;
+
+function verifyName() {
+    const name = document.getElementById('nameInput').value.trim().toLowerCase();
+    if (name === 'verônica demetrio de oliveira' || name === 'veronica demetrio de oliveira' || name == 'Veronica Demetrio de Oliveira' || name == 'Verônica Demetrio de Oliveira') {
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    } else {
+        showMessage('Humm... esse não é o nome do amor da minha vida 🤔');
+    }
+}
+
+function verifyBeauty() {
+    const beauty = document.getElementById('beautyInput').value.trim().toLowerCase();
+    if (beauty === 'infinito' || beauty == 'Ininito' || beauty == 'INFINITO') {
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step3').style.display = 'block';
+    } else {
+        beautyAttempts++;
+        if (beautyAttempts >= 3) {
+            document.getElementById('beautyHint').textContent = '💡 Dica: lembre que não existe ninguém no universo mais linda que você. Ou seja, seu nível de beleza é...?';
+        } else {
+            showMessage('Hmmmm... acho que você está se subestimando, tente de novo 💖');
+        }
+    }
+}
+
+function verifyChildren() {
+    const daughter = document.getElementById('daughterInput').value.trim().toLowerCase();
+    const son = document.getElementById('sonInput').value.trim().toLowerCase();
+
+    if ((daughter === 'isis' && son === 'antony') || (daughter === 'Isis' && son === 'Antony') || (daughter === 'isis' && son === 'Antony') || (daughter === 'Isis' && son === 'antony') ||
+    (daughter === 'Ísis' && son === 'Antony') || (daughter === 'ísis' && son === 'Antony') || (daughter === 'ísis' && son === 'antony') || (daughter === 'Isis' && son === 'Antoni') || (daughter === 'isis' && son === 'antoni') ||
+    (daughter === 'ísis' && son === 'antoni') || (daughter === 'ísis' && son === 'Antoni') || (daughter === 'Ísis' && son === 'antoni') || (daughter === 'Ísis' && son === 'Antoni')) {
+        document.getElementById('authContainer').style.display = 'none';
+        document.querySelector('.container').style.display = 'block';
+        // Começa a música automaticamente se quiser
+        if (!musicStarted) {
+            bgMusic.play();
+            musicStarted = true;
+        }
+    } else {
+        showMessage('Errrr... Não! 🤭 Pensa bem nos nomes dos nossos filhos e tente novamente.');
+    }
+}
 
 const startDate = new Date(2025, 0, 1, 0, 0, 0); // 01/01/2025 às 00:00
 
@@ -80,7 +138,10 @@ document.getElementById('currentPhoto').addEventListener('click', nextPhoto);
     window.removeEventListener('click', playMusicOnce);
 });*/
 const bgMusic = document.getElementById('bg-music');
+
+
 let musicStarted = false;
+/*
 let lastTapTime = 0;
 
 // Tocar a música no primeiro toque
@@ -104,5 +165,5 @@ window.addEventListener('click', function (event) {
     lastTapTime = now;
 });
 
-
+*/
 
