@@ -30,7 +30,7 @@ function verifyName() {
 function verifyBeauty() {
     const beauty = document.getElementById('beautyInput').value.trim().toLowerCase();
     if (normalize(beauty) === normalize('infinito') || normalize(beauty) === normalize('Ininito') || normalize(beauty) === normalize('INFINITO') ||
-        normalize(beauty) === normalize('infinita') || normalize(beauty) === normalize('Ininita') || normalize(beauty) === normalize('INFINITA')) {
+        normalize(beauty) === normalize('infinita') || normalize(beauty) === normalize('Infinita') || normalize(beauty) === normalize('INFINITA')) {
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step3').style.display = 'block';
     } else {
