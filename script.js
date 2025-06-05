@@ -1,3 +1,7 @@
+
+function normalize(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
 function showMessage(message) {
     const box = document.getElementById('messageBox');
     const content = document.getElementById('messageContent');
@@ -15,7 +19,7 @@ let beautyAttempts = 0;
 
 function verifyName() {
     const name = document.getElementById('nameInput').value.trim().toLowerCase();
-    if (name === 'verônica demetrio de oliveira' || name === 'veronica demetrio de oliveira' || name == 'Veronica Demetrio de Oliveira' || name == 'Verônica Demetrio de Oliveira') {
+    if (normalize(name) === normalize('verônica demetrio de oliveira') || normalize(name) === normalize('veronica demetrio de oliveira') || normalize(name) === normalize('Veronica Demetrio de Oliveira') || normalize(name) == normalize('Verônica Demetrio de Oliveira')) {
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
     } else {
@@ -25,7 +29,7 @@ function verifyName() {
 
 function verifyBeauty() {
     const beauty = document.getElementById('beautyInput').value.trim().toLowerCase();
-    if (beauty === 'infinito' || beauty == 'Ininito' || beauty == 'INFINITO') {
+    if (normalize(beauty) === normalize('infinito') || normalize(beauty) === normalize('Ininito') || normalize(beauty) === normalize('INFINITO')) {
         document.getElementById('step2').style.display = 'none';
         document.getElementById('step3').style.display = 'block';
     } else {
@@ -42,19 +46,18 @@ function verifyChildren() {
     const daughter = document.getElementById('daughterInput').value.trim().toLowerCase();
     const son = document.getElementById('sonInput').value.trim().toLowerCase();
 
-    if ((daughter === 'isis' && son === 'antony') || (daughter === 'Isis' && son === 'Antony') || (daughter === 'isis' && son === 'Antony') || (daughter === 'Isis' && son === 'antony') ||
-    (daughter === 'Ísis' && son === 'Antony') || (daughter === 'ísis' && son === 'Antony') || (daughter === 'ísis' && son === 'antony') || (daughter === 'Isis' && son === 'Antoni') || (daughter === 'isis' && son === 'antoni') ||
-    (daughter === 'ísis' && son === 'antoni') || (daughter === 'ísis' && son === 'Antoni') || (daughter === 'Ísis' && son === 'antoni') || (daughter === 'Ísis' && son === 'Antoni')) {
-        document.getElementById('authContainer').style.display = 'none';
-        document.querySelector('.container').style.display = 'block';
-        // Começa a música automaticamente se quiser
-        if (!musicStarted) {
-            bgMusic.play();
-            musicStarted = true;
-        }
-    } else {
-        showMessage('Errrr... Não! 🤭 Pensa bem nos nomes dos nossos filhos e tente novamente.');
-    }
+    if ((normalize(daughter) === normalize('isis') && normalize(son) === normalize('antony')) || (normalize(daughter) === normalize('Isis') && normalize(son) === normalize('Antony')) || (normalize(daughter) === normalize('isis') && normalize(son) === normalize('Antony')) || (normalize(daughter) === normalize('Isis') && normalize(son) === normalize('antony')) ||
+    (normalize(daughter) === normalize('Ísis') && normalize(son) === normalize('Antony')) || (normalize(daughter) === normalize('ísis') && normalize(son) === normalize('Antony')) || (normalize(daughter) === normalize('ísis') && normalize(son) === ('antony')) || (normalize(daughter) === normalize('Isis') && normalize(son) === normalize('Antoni')) || (normalize(daughter) === normalize('isis') && normalize(son) === normalize('antoni')) ||
+    (normalize(daughter) === normalize('ísis') && normalize(son) === normalize('antoni')) || (normalize(daughter) === normalize('ísis') && normalize(son) === normalize('Antoni')) || (normalize(daughter) === normalize('Ísis') && normalize(son) === normalize('antoni')) || (normalize(daughter) === normalize('Ísis') && normalize(son) === normalize('Antoni'))) {
+    document.getElementById('authContainer').style.display = 'none';
+    document.querySelector('.container').style.display = 'block';
+
+
+        startMusic();
+    
+} else {
+    showMessage('Errrr... Não! 🤭 Pensa bem nos nomes dos nossos filhos e tente novamente.');
+}
 }
 
 const startDate = new Date(2025, 0, 1, 0, 0, 0); // 01/01/2025 às 00:00
@@ -166,4 +169,15 @@ window.addEventListener('click', function (event) {
 });
 
 */
+
+function startMusic() {
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.play().then(() => {
+        musicStarted = true;
+    }).catch((error) => {
+        console.log("Erro ao tentar tocar música:", error);
+        showMessage("Clique na tela para ativar a música 🎵");
+    });
+}
+
 
